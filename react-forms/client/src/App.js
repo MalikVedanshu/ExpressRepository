@@ -4,21 +4,49 @@ class App extends Component{
   constructor() {
     super();
     this.state = {
+      checkSkill : {
+        Management : false, CustomerSupport : false
+        , InformationTechnology : false, Teaching : false },
+
       userdata : {
         fname : '',
         lname : '',
         email : '',
         gender : '',
         techstack : '',
-        dob : '',
-        profile : '',
+        dateofbirth : '',
+        profileurl : '',
+        skills : [],
         bio : ''
       }
     }
+    
+  } 
+  // componentDidMount () {
+  //   this.setState({
+  //     checkSkill : {...this.state.checkSkill},
+  //     userdata: {... this.state.userdata}
+  //   })
+  // }
 
-  }
+
   onChange = (ev) => {
-    console.log(ev.target.name,ev.target.value);
+      this.setState ({
+        userdata : {
+          ...this.state.userdata, 
+          [ev.target.name]: ev.target.value
+        }
+      })
+    }
+    onCheck = (even) => {
+      this.setState({
+        checkSkill : {...this.state.checkSkill, [even.target.value] : !this.state.checkSkill[even.target.value]},
+        userdata : {...this.state.userdata, skills : Object.keys(this.state.checkSkill).filter(kii =>  this.state.checkSkill[kii] === true)}
+      })
+    }
+  onSubmit = (eve) => {
+    eve.preventDefault();
+    console.log(this.state.userdata);
   }
   render() {
     return(
@@ -57,10 +85,19 @@ class App extends Component{
         <label htmlFor="profile">Enter your profile URL : </label>
         <input type="url" name = "profileurl" onChange={this.onChange} /> <br /><br />
 
+        <input type="checkbox" name="skills" value="Management" onChange={this.onCheck} />
+        <label htmlFor="skills"> Management </label>
+        <input type="checkbox" name="skills" value="CustomerSupport" onChange={this.onCheck} />
+        <label htmlFor="skills"> Customer-Support </label>
+        <input type="checkbox" name="skills" value="InformationTechnology" onChange={this.onCheck} />
+        <label htmlFor="skills"> Information-Technology </label>
+        <input type="checkbox" name="skills" value="Teaching" onChange={this.onCheck} />
+        <label htmlFor="skills"> Teaching </label> <br /> <br />
+
         <label htmlFor="bio">Enter your Bio : </label>
         <textarea name="bio" rows="4" cols = "50" onChange={this.onChange} /> <br /><br />
 
-        <input type="submit" value = "Submit" />
+        <input type="submit" value = "Submit" onClick={this.onSubmit}/>
 
         </form>
         </center>
