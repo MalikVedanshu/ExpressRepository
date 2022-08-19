@@ -5,15 +5,15 @@ form {
     color: white;
 }
 body{
-    background-color: rgb(51, 163, 163);
+    background-color: rgb(72, 131, 131);
     text-shadow: 5px;
 }
 input{
-    border: 2px,solid rgb(131, 195, 173);
-    border-radius: 7px;
+    border: 2px,solid rgb(72, 131, 131);
+    border-radius: 4px;
 
     height: 30px;
-    background-color: rgb(222, 230, 230);
+    background-color: rgb(211, 222, 222);
     color: white   
 }
 input[type=text],textarea,option,select,input[type=email],input[type=url]{
@@ -22,12 +22,12 @@ input[type=text],textarea,option,select,input[type=email],input[type=url]{
     color: rgb(30, 30, 73);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* width: fit-content; */
-    background-color: rgb(222, 230, 230);
+    background-color: rgb(167, 202, 202);
     border-radius: 7px;
-    width: 15%;
+    width: 10%;
 }
 input[type=submit],input[type=date]{
-    background-color: rgb(222, 230, 230);
+    background-color: rgb(167, 202, 202);
     border-radius: 7px;
     width: fit-content;
     font-size: large;

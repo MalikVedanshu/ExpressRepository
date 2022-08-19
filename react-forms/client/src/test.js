@@ -1,6 +1,4 @@
-let checkSkill = {
-    Management : false, CustomerSupport : true
-    , InformationTechnology : false, Teaching : true }
-
-let filterSkill = Object.keys(checkSkill).filter(kii => checkSkill[kii] === true);
-console.log(filterSkill);
+let interestArr = ['swimming', 'dancing', 'shooting']
+let check = 'dancing';
+interestArr.splice(interestArr.indexOf(check),1)
+console.log(interestArr);
