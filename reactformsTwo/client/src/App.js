@@ -27,6 +27,10 @@ class App extends React.Component {
       }
     })
   }
+  onSubmit = (eve) => {
+    eve.preventDefault();
+    console.log(this.state.userFeedback);
+  }
 
   render() {
     return (
@@ -75,7 +79,7 @@ class App extends React.Component {
             <p className="small">Please do not indicate your account or credit card number and banking instruction in your comments. Thank you for your time and valuable feedback.</p>
             <textarea rows="5" name="feedback" onChange={this.onTrigger}></textarea>
             <div className="btn-block">
-              <button type="submit" href="/">Send Feedback</button>
+              <button type="submit" href="/" onClick={this.onSubmit}>Send Feedback</button>
             </div>
           </form>
         </div>
