@@ -43,18 +43,17 @@ class App extends React.Component {
     }
     this.setState({
         raumInfo : arr,
-        roomobj : obj
+        userData : {
+          ...this.state.userData,room : obj
+        }
     })
     }
   }
   onRoomInput = (eventt) => {
     console.log(eventt.target.name, eventt.target.value)
     this.setState({
-        roomobj : {
-            ...this.state.roomobj, [eventt.target.name] : eventt.target.value
-        },
         userData : {
-            ...this.state.userData, room : this.state.roomobj
+            ...this.state.userData, room : {...this.state.userData.room, [eventt.target.name] : eventt.target.value}
         }
     })
   }
