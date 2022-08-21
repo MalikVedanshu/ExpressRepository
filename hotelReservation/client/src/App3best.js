@@ -17,46 +17,38 @@ class App extends React.Component {
         checkoutdate : "",
         checkintime : "",
         checkouttime : "",
-        room : {},
+        room : [],
         specialinstruction : ""
       },
     //   roomInfo : [[{Room1 : ''}, {adultroom1 : ''}, {childrenroom1 : ''}]]
-    raumInfo : [['10','11','12']],
-    roomobj : {}
+    raumInfo : [['type1','adults1', 'children1']]
     }
   }
   onTrigger = (event) => {
     console.log(event.target.name, event.target.value)
-    this.setState({
-        userData : {...this.state.userData, [event.target.name] : event.target.value}
-    })
   }
   onRoomNumSelect = (even) => {
     if(even.target.value > 0){
-    let obj = {};
     let arr = [];
     for(let i = 0; i < even.target.value; i++) {
-        obj[`${i+1}0`] = '';
-        obj[`${i+1}1`] = '';
-        obj[`${i+1}2`] = '';
-        arr.push([`${i+1}0`,`${i+1}1`,`${i+1}2`]);
+        arr.push([`type${i+1}`,`adults${i+1}`,`children${i+1}`])
+    }
+    let arrTwo = [];
+    for(let j = 0; j < even.target.value; j++){
+      let obj = {[`type${j+1}`] : '' , [`adults${j+1}`] : '', [`children${j+1}`] : ''}
+      arrTwo.push(obj); 
     }
     this.setState({
         raumInfo : arr,
-        roomobj : obj
+        userData : {...this.state.userData,  room : arrTwo}
     })
     }
   }
   onRoomInput = (eventt) => {
-    console.log(eventt.target.name, eventt.target.value)
+    console.log(eventt.target.name, eventt.target.value);
     this.setState({
-        roomobj : {
-            ...this.state.roomobj, [eventt.target.name] : eventt.target.value
-        },
-        userData : {
-            ...this.state.userData, room : this.state.roomobj
-        }
-    })
+      userData : {...this.state.userData,  room : [...this.state.room , ]}
+  })
   }
 
   render () {
@@ -139,7 +131,7 @@ class App extends React.Component {
       </div>
       <div className="item" id="chwidth"> 
       <label htmlFor="room">Number of rooms</label>
-      <input id="room" type="number" name="room" min="1" max="9" onChange={this.onRoomNumSelect} />
+      <input id="room" type="number" name="room" min="1" onChange={this.onRoomNumSelect} />
       </div>
       
     {
@@ -147,7 +139,7 @@ class App extends React.Component {
           <fieldset className="columns" key={idx}>
           <legend>Room {idx + 1}</legend>
             <div className="item">
-            <select name={ele[0]} onChange={this.onRoomInput} >
+            <select name={`type${idx+1}`} onChange={this.onRoomInput} >
             <option value="">Type </option>
             <option value="Standard">Standard</option>
             <option value="Deluxe">Deluxe</option>
@@ -156,7 +148,7 @@ class App extends React.Component {
             </div>
             <div className="item"></div>
             <div className="item">
-            <select name={ele[1]} onChange={this.onRoomInput}>
+            <select name={`adults${idx+1}`} onChange={this.onRoomInput}>
             <option value="" >Number of adults</option>
             <option value="1" >1</option>
             <option value="2">2</option>
@@ -166,7 +158,7 @@ class App extends React.Component {
             </select>
             </div>
             <div className="item">
-            <select name={ele[2]} onChange={this.onRoomInput}>
+            <select name={`children${idx+1}`} onChange={this.onRoomInput}>
             <option value="">Number of children</option>
             <option value="0" >0</option>
             <option value="1">1</option>

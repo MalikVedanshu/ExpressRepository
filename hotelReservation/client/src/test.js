@@ -1,4 +1,2 @@
-let arr =  [{a:1 },{b:2},{c:3}]
-arr.forEach(element => {
-    console.log(Object.keys(element));
-});
+let arr =  {a : [1,2,3],b : [5,6,7]}
+console.log(arr.a);
