@@ -63,6 +63,7 @@ class App extends React.Component {
         })
       } 
   }
+  
   onRoomInput = (eventt) => {
     let obj = {...this.state.userData.roominfo}
     obj[eventt.target.name] = eventt.target.value
@@ -71,6 +72,11 @@ class App extends React.Component {
         ...this.state.userData, roominfo : obj
       }
     })
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state.userData)
   }
 
   render() {
@@ -201,7 +207,7 @@ class App extends React.Component {
               </div>
             </fieldset>
             <div className="btn-block">
-              <button type="submit" href="/">Submit</button>
+              <button type="submit" href="/" onClick={this.onSubmit}>Submit</button>
             </div>
           </form>
         </div>
