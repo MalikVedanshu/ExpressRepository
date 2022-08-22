@@ -76,7 +76,19 @@ class App extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.userData)
+    let date = new Date().toLocaleDateString().split('/').map(ele => ele < 10 ? '0' + ele : ele)
+    let todaysdate = `${date[2]}${date[0]}${date[1]}`;
+    let checkin = this.state.userData.checkindate.split('-').join('')
+    let checkout = this.state.userData.checkoutdate.split('-').join('')
+    if(todaysdate > checkin || checkin >= checkout){
+        console.log(checkin,checkout,date)
+        alert("Wrong dates input")
+    }
+    else if(Object.values(this.state.userData.roominfo).includes("") || Object.values(this.state.userData).includes("") ){
+        alert("Details cannot be blank")
+    }else {
+        console.log(this.state.userData);
+    }
   }
 
   render() {
@@ -168,7 +180,7 @@ class App extends React.Component {
                     <fieldset className="columns" key={idx}>
                       <legend>Room {idx + 1}</legend>
                       <div className="item">
-                        <select name={ele[0]} onChange={this.onRoomInput} >
+                        <select name={ele[0]} onChange={this.onRoomInput}>
                           <option defaultValue="">Type </option>
                           <option value="Standard">Standard</option>
                           <option value="Deluxe">Deluxe</option>
@@ -178,7 +190,7 @@ class App extends React.Component {
                       <div className="item"></div>
                       <div className="item">
                         <select name={ele[1]} onChange={this.onRoomInput}>
-                          <option defaultValue="" >Number of adults</option>
+                          <option defaultValue="0" >Number of adults</option>
                           <option value="1" >1</option>
                           <option value="2">2</option>
                           <option value="3">3</option>
@@ -187,7 +199,7 @@ class App extends React.Component {
                         </select>
                       </div>
                       <div className="item">
-                        <select name={ele[2]} onChange={this.onRoomInput}>
+                        <select name={ele[2]} required onChange={this.onRoomInput}>
                           <option value="">Number of children</option>
                           <option defaultValue="0" >0</option>
                           <option value="1">1</option>
