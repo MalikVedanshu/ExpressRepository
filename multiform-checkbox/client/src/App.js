@@ -21,6 +21,7 @@ class App extends Component{
 
 
   onChange = (ev) => {
+    // console.log(ev.target.name,ev.target.value);
       this.setState ({
         userdata : {
           ...this.state.userdata, 
