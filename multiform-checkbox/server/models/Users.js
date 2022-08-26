@@ -5,28 +5,24 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema ({
     fname : {
         type : String,
-        require : true
+        required : true
     },
     lname : {
         type : String,
-        require : true
+        required : true
     },
     email : {
         type : String,
-        require : type,
+        required : true,
         unique : true
     },
     gender : {
         type : String,
-        require : true
+        required : true
     },
     techstack : {
         type : String,
-        require : true
-    },
-    interests : {
-        type : array,
-        require : true
+        required : true
     },
     dateofbirth : {
         type : Date
@@ -35,9 +31,16 @@ const userSchema = new Schema ({
         type : String,
         required : true
     },
+    interests : {
+        type : Array,
+        required : true
+    },
     bio : {
         type : String,
         required : true,
         maxlength : 250
     }
 })
+
+const userModel = new mongoose.model("Users",userSchema,"formdata");
+export default userModel;

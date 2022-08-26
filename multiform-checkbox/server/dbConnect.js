@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 async function dbConnect() {
     try {
-        await mongoose.connect('mongodb+srv://docexp:ze54xsuw7AlBJvdm@cluster0.oqm2c.mongodb.net/customers')
+        await mongoose.connect('')
         console.log('Mongo DB is connected');
     }
     catch (error) {
